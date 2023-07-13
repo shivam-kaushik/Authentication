@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+<style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .frame {
+      width: 180px;
+      height: 180px;
+      border: 2px solid #f2f2f2;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      grid-gap: 10px;
+      width: 80px;
+      height: 30px;
+    }
+
+    .grid-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffff;
+      position: relative;
+      border: 5px solid #f2f2f2
+    }
+
+    .grid-item img {
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 5px;
+      width: 90px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .number-grid span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f2f2f2;
+      padding: 5px;
+    }
+
+    .number-grid span img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: auto;
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 20px;
+      padding: 20px;
+      flex-direction: row;
+      gap: 10px;
+      border: 5px solid #000;
+
+    }
+
+    #submit {
+      padding: 5px ;
+      width: 100px;
+      align-self: center;
+      background-color: #3d3bb7;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-container button {
+      padding: 10px 20px 10px 20px; 
+    }
+</style>
+</head>
+<body>
+<div class="container">
+  <div id="label_heading">Hi User, Please select your image:</div>
+<div class="form-container">
+  <div class="number-grid">
+    <div class="grid-item" onclick="selectImage(1)">
+      <img src="" alt="Image 1">
+    </div>
+    <div class="grid-item" onclick="selectImage(2)">
+      <img src="" alt="Image 2">
+    </div>
+    <div class="grid-item" onclick="selectImage(3)">
+      <img src="" alt="Image 3">
+    </div>
+    <div class="grid-item" onclick="selectImage(4)">
+      <img src="" alt="Image 4">
+    </div>
+    <div class="grid-item">
+      <img src="{{ url_for('static', filename='Logo.png') }}" alt="Image 5">
+    </div>
+    <div class="grid-item" onclick="selectImage(6)">
+      <img src="" alt="Image 6">
+    </div>
+    <div class="grid-item" onclick="selectImage(7)">
+      <img src="" alt="Image 7">
+    </div>
+    <div class="grid-item" onclick="selectImage(8)">
+      <img src="" alt="Image 8">
+    </div>
+    <div class="grid-item" onclick="selectImage(9)">
+      <img src="" alt="Image 9">
+    </div>
+  </div>
+
+</div>
+<button id="submit" onclick="submitSelection()">Submit</button>
+</div>
+
+
+<script>
+  var imageGrid = document.querySelector('.number-grid');
+  var fixedImageSrc = '{{ url_for("static", filename="Logo.png") }}';
+  var availableImages = [
+    '{{ url_for("static", filename="Apple.jpg") }}',
+    '{{ url_for("static", filename="Bulb.jpg") }}',
+    '{{ url_for("static", filename="Cactus.png") }}',
+    '{{ url_for("static", filename="Camera.jpg") }}',
+    '{{ url_for("static", filename="Candle.png") }}',
+    '{{ url_for("static", filename="Hat.jpg") }}',
+    '{{ url_for("static", filename="Star.png") }}',
+    '{{ url_for("static", filename="Tree.jpg") }}'
+  ];
+
+  function getRandomImage() {
+    var randomIndex = Math.floor(Math.random() * availableImages.length);
+    var randomImage = availableImages[randomIndex];
+    availableImages.splice(randomIndex, 1);
+    return randomImage;
+  }
+  
+  var selectedImages = [];
+
+  function selectImage(position) {
+  if (!imageGrid.children[position - 1].classList.contains('fixed')) {
+    var gridItem = imageGrid.children[position - 1];
+    var isSelected = gridItem.classList.toggle('selected');
+    
+    if (isSelected) {
+      var imageSrc = gridItem.querySelector('img').src;
+      selectedImages.unshift(imageSrc); // Prepend the image URL to the array
+    } else {
+      var index = selectedImages.indexOf(imageSrc);
+      if (index > -1) {
+        selectedImages.splice(index, 1);
+      }
+    }
+  }
+}
+  
+  function submitSelection() {
+    var allImages = Array.from(imageGrid.children);
+    var allImageSrcs = allImages.map(item => item.querySelector('img').src);
+    var getallImages = allImageSrcs.filter(Boolean);
+    // Filter out any empty positions
+    var filteredImages = selectedImages.filter(Boolean);
+
+    if (filteredImages.length > 0) {
+      // Code to store the selected images in the database
+      var data = { images: filteredImages, gridimages: getallImages};
+      console.log(data)
+      fetch('/login_token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        // Handle the response or perform any other necessary actions
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle the error or perform any other necessary actions
+      });
+    }
+  }
+
+
+  imageGrid.children[0].querySelector('img').src = getRandomImage();
+  imageGrid.children[1].querySelector('img').src = getRandomImage();
+  imageGrid.children[2].querySelector('img').src = getRandomImage();
+  imageGrid.children[3].querySelector('img').src = getRandomImage();
+  // imageGrid.children[4].querySelector('img').src = fixedImageSrc;
+  imageGrid.children[5].querySelector('img').src = getRandomImage();
+  imageGrid.children[6].querySelector('img').src = getRandomImage();
+  imageGrid.children[7].querySelector('img').src = getRandomImage();
+  imageGrid.children[8].querySelector('img').src = getRandomImage();
+
+</script>
+</body>
+</html>

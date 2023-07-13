@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Enrollment</title>
+<style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container .form_whole {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+    }
+
+    .frame {
+      width: 180px;
+      height: 180px;
+      border: 2px solid #ffffff;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      grid-gap: 5px;
+      width: 80px;
+      height: 30px;
+    }
+
+    .grid-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffffff;
+      cursor: move;
+      position: relative;
+      border: 4px solid #f2f2f2;
+    }
+
+    .grid-item img {
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .number-grid {
+      display: grid;
+      /* grid-template-rows: repeat(3,1fr); */
+      grid-template-columns: repeat(3,1fr);
+      grid-gap: 2px;
+      width: 100px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      align-self: center;
+    }
+
+    .number-grid span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f2f2f2;
+      padding: 5px;
+    }
+
+    .number-grid span img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: auto;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    label{
+      font-size: 10px;
+    }
+
+    .form-container input[type="password"] {
+      width: 200px;
+    }
+
+    .form-container button {
+      padding: 5px ;
+      width: 50%;
+      align-self: center;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #drag{
+      padding:20px;
+      text-align: center;
+      align-self: center;
+      margin-top:80px
+    }
+
+</style>
+</head>
+<body>
+<form action = "/store_key_position" method="post">
+<div class="container">
+  <div id="drag">Drag and drop the pairs to continue with the enrollment</div>
+  <div class = form_whole>
+  <div class="frame">
+    <div class="grid-container">
+      <div class="grid-item draggable" draggable="true">
+        <img src="{{ url_for('static', filename='Apple.jpg') }}" alt="Image 1">
+        <input type="hidden" name="gridItem" value="static\Apple.jpg">
+      </div>
+      <div class="grid-item draggable" draggable="true">
+        <img src="{{ url_for('static', filename='Bulb.jpg') }}" alt="Image 2">
+        <input type="hidden" name="gridItem" value="static\Bulb.jpg">
+      </div>
+      <div class="grid-item draggable" draggable="true">
+        <img src="{{ url_for('static', filename='Cactus.png') }}" alt="Image 3">
+        <input type="hidden" name="gridItem" value="static\Cactus.png">
+      </div>
+      <div class="grid-item draggable" draggable="true">
+        <img src="{{ url_for('static', filename='Camera.jpg') }}" alt="Image 4">
+        <input type="hidden" name="gridItem" value="static\Camera.jpg">
+      </div>  
+      <div class="grid-item draggable" draggable="true">
+        <img src="{{ url_for('static', filename='Candle.png') }}" alt="Image 5">
+        <input type="hidden" name="gridItem" value="static\Candle.png">
+      </div>
+      <div class="grid-item draggable" draggable="true">
+        <img src="{{ url_for('static', filename='Hat.jpg') }}" alt="Image 6">
+        <input type="hidden" name="gridItem" value="static\Hat.jpg">
+      </div>
+      <div class="grid-item draggable" draggable="true">
+        <img src="{{ url_for('static', filename='Star.png') }}" alt="Image 7">
+        <input type="hidden" name="gridItem" value="static\Star.png">
+      </div>
+      <div class="grid-item draggable" draggable="true">
+        <img src="{{ url_for('static', filename='Tree.jpg') }}" alt="Image 8">
+        <input type="hidden" name="gridItem" value="static\Tree.jpg">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="number-grid">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span><img src="{{ url_for('static', filename='Logo.png') }}" alt="Image Logo"></span>
+      <span>5</span>
+      <span>6</span>
+      <span>7</span>
+      <span>8</span>
+    </div>
+    <label>Choose three keypoints from the above number grid: </label>
+    <input type="password" placeholder="Enter your keypoints from grid." id="keyPoint" name="keyPoint" required>
+    <button type="submit">Submit</button>
+  </div>
+</div>
+</form>
+</div>
+
+<script>
+  const draggables = document.querySelectorAll('.draggable');
+  let dragItem = null;
+  let dropIndex = null;
+
+  draggables.forEach(item => {
+    item.addEventListener('dragstart', handleDragStart);
+    item.addEventListener('dragenter', handleDragEnter);
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('dragleave', handleDragLeave);
+    item.addEventListener('drop', handleDrop);
+    item.addEventListener('dragend', handleDragEnd);
+  });
+
+  function handleDragStart(e) {
+    dragItem = this;
+    this.classList.add('dragging');
+  }
+
+  function handleDragEnter(e) {
+    e.preventDefault();
+    this.classList.add('hovered');
+  }
+
+  function handleDragOver(e) {
+    e.preventDefault();
+    const grid = document.querySelector('.grid-container');
+    const items = Array.from(grid.querySelectorAll('.grid-item'));
+    dropIndex = items.indexOf(this);
+    const dragIndex = items.indexOf(dragItem);
+
+    if (dropIndex > dragIndex && !this.classList.contains('dragging-over')) {
+      this.classList.add('dragging-over');
+    } else if (dropIndex < dragIndex && this.classList.contains('dragging-over')) {
+      this.classList.remove('dragging-over');
+    }
+  }
+
+  function handleDragLeave() {
+    this.classList.remove('hovered');
+    this.classList.remove('dragging-over');
+  }
+
+  function handleDrop() {
+    const grid = document.querySelector('.grid-container');
+    const items = Array.from(grid.querySelectorAll('.grid-item'));
+    const dragIndex = items.indexOf(dragItem);
+
+    if (dropIndex !== null && dragIndex !== dropIndex) {
+      if (dragIndex < dropIndex) {
+        grid.insertBefore(dragItem, this.nextSibling);
+      } else {
+        grid.insertBefore(dragItem, this);
+      }
+    }
+
+    this.classList.remove('hovered');
+    this.classList.remove('dragging-over');
+  }
+
+  function handleDragEnd() {
+    this.classList.remove('dragging');
+    dragItem = null;
+    dropIndex = null;
+  }
+
+    function submitData() {
+      const password = document.querySelector('input[type="password"]').value;
+
+      // store_key_position(password)
+      console.log(password)
+
+    //   // Send the password data to the server for storage
+    //   // You can use AJAX or fetch to send the data to the server
+
+    //   // Example using fetch
+      fetch('/store_key_position', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: password })
+
+
+      })
+        .then(response => {
+          if (response.ok) {
+            // Data successfully stored in the database
+            console.log('Password stored successfully');
+          } else {
+            // Error occurred while storing the password
+            console.error('Error storing password');
+          }
+        })
+        .catch(error => {
+          console.error('Error storing password:', error);
+        });
+    }
+</script>
+</body>
+</html>
