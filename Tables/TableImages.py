@@ -1,7 +1,9 @@
 import psycopg2
 
+
 def get_connection():
     return psycopg2.connect("dbname=test_db user=postgres password=Password1!")
+
 
 def createTableImages():
     db_conn = psycopg2.connect("dbname=test_db user=postgres password=Password1!")
@@ -47,6 +49,8 @@ def insertTableImages(FileName):
 # insertTableImages('static\Camera.jpg')
 # insertTableImages('static\Tree.jpg')
 
+# insertTableImages('..\static\Star.png')
+
 # createTableImages()
 
 
@@ -74,15 +78,15 @@ def readTableImages(serial, newFileName):
         if conn is not None:
             conn.commit()
 
+
 # readTableImages(4, 'C:\Workspace\Imagication\Images\SampleImagefromDB.jpg')
 def getImageidFromTableImages(newFileName):
     with get_connection() as conn:
-            cursor_object = conn.cursor()
-            cursor_object.execute(f"Select imageid from Images1 where ImageFileName = '{newFileName}'")
-            data = cursor_object.fetchall()
-            print(data)
-            response = data[0][0]
-            cursor_object.close()
-            print("logs are here")
-            return str(response)
-
+        cursor_object = conn.cursor()
+        cursor_object.execute(f"Select imageid from Images1 where ImageFileName = '{newFileName}'")
+        data = cursor_object.fetchall()
+        print(data)
+        response = data[0][0]
+        cursor_object.close()
+        print("logs are here")
+        return str(response)

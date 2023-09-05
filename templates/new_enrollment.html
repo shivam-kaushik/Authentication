@@ -1,0 +1,1923 @@
+<html lang="en"><head>
+    <title data-i18n="login-page-title-sta">Enrollment</title>
+    <link rel="shortcut icon" href="/static/bsid.jpg">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .sas-line {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #ececec;
+            margin: 17px 0 24px 0;
+            padding: 0;
+        }
+
+        .other-options {
+            height: 20px;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .other-options .fa {
+            font-size: 18px;
+            margin-right: 4px;
+        }
+
+        .sas-welcome {
+            font-size: 45px;
+            font-weight: bold;
+        }
+
+        /*change*/
+        .sas-template-background {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0px;
+            text-align: left;
+        }
+
+        /*change*/
+        .display-none {
+            display: none;
+        }
+
+        /*change*/
+        .sas-idp_login_enhanced_or_label_margin {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        /*
+        * ===================================================================================================
+        *		ID First Section Start
+        * ===================================================================================================
+        */
+
+        .btn:focus {
+            outline: 0;
+            -webkit-box-shadow: 0px 0px 0px 2px #7ec0ff !important;
+            -moz-box-shadow: 0px 0px 0px 2px #7ec0ff !important;
+            box-shadow: 0px 0px 0px 2px #7ec0ff !important;
+        }
+
+        /* ----
+        SUBMIT BUTTON
+        background-color: #1A2856
+        hover/active background-color: #263A7D
+        */
+        .sas-button {
+            color: #fff;
+            background-color: #1A2856;
+            border-color: #1A2856;
+            border-radius: 2px;
+            width: 300px;
+            height: 38px;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        .sas-button:focus,
+        .sas-button.focus {
+            color: #fff;
+            background-color: #1A2856;
+            border-color: #1A2856;
+        }
+
+        .sas-button:hover {
+            color: #fff;
+            background-color: #263A7D;
+            border-color: #263A7D;
+        }
+
+        .sas-button:active,
+        .sas-button.active,
+        .open > .dropdown-toggle.sas-button {
+            color: #fff;
+            background-color: #1A2856;
+            border-color: #1A2856;
+        }
+
+        .sas-button:active:hover,
+        .sas-button.active:hover,
+        .open > .dropdown-toggle.sas-button:hover,
+        .sas-button:active:focus,
+        .sas-button.active:focus,
+        .open > .dropdown-toggle.sas-button:focus,
+        .sas-button:active.focus,
+        .sas-button.active.focus,
+        .open > .dropdown-toggle.sas-button.focus {
+            color: #fff;
+            background-color: #263A7D;
+            border-color: #263A7D;
+        }
+
+        .sas-button:active,
+        .sas-button.active,
+        .open > .dropdown-toggle.sas-button {
+            background-image: none;
+        }
+
+        .sas-button.disabled:hover,
+        .sas-button[disabled]:hover,
+        fieldset[disabled] .sas-button:hover,
+        .sas-button.disabled:focus,
+        .sas-button[disabled]:focus,
+        fieldset[disabled] .sas-button:focus,
+        .sas-button.disabled.focus,
+        .sas-button[disabled].focus,
+        fieldset[disabled] .sas-button.focus {
+            background-color: #1A2856;
+            border-color: #1A2856;
+        }
+
+        .sas-button .badge {
+            color: #1A2856;
+            background-color: #fff;
+        }
+
+
+        .sas_idp_login_enhanced-login_card .sas-btn-secondary {
+            border-color: #1A2856;
+            color: #1A2856;
+            background-color: white;
+        }
+
+        .sas_idp_login_enhanced-login_card .sas-btn-secondary:hover,
+        .sas_idp_login_enhanced-login_card .sas-btn-secondary:focus {
+            background-color: #f2f2f2;
+        }
+
+        .sas_idp_login_enhanced-login_card .confirm-identity-btn {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .sas_idp_login_enhanced-login_card .confirm-identity-btn .sas-button {
+            width: calc(50% - 3px);
+            border-radius: 4px;
+        }
+
+        .sas_idp_login_enhanced-login_card .confirm-identity-message {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .sas_idp_login_enhanced-login_card .sas_idp_login_enhanced-password {
+            text-align: left;
+        }
+
+        .sas_idp_login_enhanced-login_card .confirm-identity-text {
+            margin-bottom: 14px;
+        }
+
+        .sas_idp_login_enhanced-login_card .sas-line {
+            margin: 6px 0;
+        }
+
+        .sas_idp_login_enhanced-title .confirm-identity-img {
+            margin-bottom: 24px;
+        }
+
+        .sas_idp_login_enhanced-password .confirm-identity-invalid-text-box,
+        .sas_idp_login_enhanced-password .confirm-identity-invalid-text-box:focus {
+            border-color: #dc3545;
+        }
+
+        .sas_idp_login_enhanced-password .confirm-identity-invalid-text {
+            display: block;
+            color: #dc3545;
+            font-size: 13px;
+            text-align: right;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+        }
+
+        /* LINK */
+        .sas-link {
+            color: #1A2856;
+            font-weight: normal;
+            border-radius: 0;
+            text-decoration: underline;
+        }
+
+        .sas-link,
+        .sas-link:active,
+        .sas-link.active,
+        .sas-link[disabled],
+        fieldset[disabled] .btn-link {
+            background-color: transparent;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .sas-link,
+        .sas-link:hover,
+        .sas-link:active {
+            border-color: transparent;
+        }
+
+        /**Change*/
+        .sas-link:hover,
+        .sas-link:focus {
+            color: #263A7D;
+            text-decoration: underline;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .sas-link:focus {
+            border: 2px solid #7ec0ff;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .sas-link[disabled]:hover,
+        fieldset[disabled] .btn-link:hover,
+        .sas-link[disabled]:focus,
+        fieldset[disabled] .btn-link:focus {
+            color: #777777;
+            text-decoration: none;
+        }
+
+        /* TEXTBOX */
+        .sas-textbox {
+            height: 40px;
+            width: 300px;
+            box-shadow: none;
+            border: 1px solid #858585;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #3b5872;
+            position: relative;
+        }
+
+        .sas-textbox:hover {
+            box-shadow: none;
+        }
+
+        .sas-textbox:focus {
+            box-shadow: none;
+            border: 1px solid #3691ee;
+        }
+
+        /* CHECKBOX */
+        .idFirstBody input[type="checkbox"] {
+            margin: 0 0 0 -8px;
+        }
+
+        .idFirstBody input[type="checkbox"] + label {
+            font-size: 14px;
+            font-weight: 400;
+            padding: 1px 0 0 10px;
+        }
+
+        .idFirstBody input[type="checkbox"] + label::before {
+            border: 1px solid #858585;
+        }
+
+        .idFirstBody input[type="checkbox"]:checked + label::before {
+            border-color: #1A2856;
+            background-color: #1A2856;
+            color: #fff;
+        }
+
+        /* RADIO BUTTON */
+        .idFirstBody input[type="radio"] {
+            display: none;
+        }
+
+        .idFirstBody input[type="radio"] + label {
+            font-size: 12px;
+            font-weight: 100;
+        }
+
+        .idFirstBody input[type="radio"] + label > span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin: -4px 5px 0 0;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid #858585;
+            border-radius: 50%;
+        }
+
+        .idFirstBody input[type="radio"]:checked + label > span {
+            border-color: #1A2856;
+        }
+
+        .idFirstBody input[type="radio"]:checked + label > span > span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            margin: 4px;
+            border-radius: 50%;
+            background-color: #1A2856;
+        }
+
+        .idFirstBody {
+            /*padding: 5% 0;
+            display:flex;
+            height:100vh;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;*/
+        }
+
+        /* CONTENT WRAPPER */
+        .sas_idp_login_enhanced-content_wrapper {
+            display: table;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* CONTENT */
+        .sas_idp_login_enhanced-content {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 75px 0 60px 0;
+            color: #3b5872;
+        }
+
+        /* COMPANY BANNER */
+        .sas_idp_login_enhanced-banner_wrapper {
+            width: 100%;
+            background-color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-bottom: 1px #efefef solid;
+        }
+
+        .sas_idp_login_enhanced-nav {
+            position: absolute;
+            top: calc(50% - 20px);
+            right: 2%;
+        }
+
+        .sas_idp_login_enhanced-nav .dropdown-menu {
+            right: 10px;
+            left: auto;
+            min-width: 135px;
+            box-shadow: none;
+            white-space: nowrap;
+        }
+
+        .sas_idp_login_enhanced-nav .dropdown-menu li {
+            padding: 4px 16px;
+            cursor: pointer;
+        }
+
+        .sas_idp_login_enhanced-nav .dropdown-menu li.active {
+            background-color: #e9ecef;
+        }
+
+        .sas_idp_login_enhanced-nav .dropdown-menu li label {
+            font-weight: normal;
+            font-size: 16px;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .sas_idp_login_enhanced-nav .dropdown-menu .fa-check-circle {
+            padding-right: 8px;
+            display: inline;
+        }
+
+        .sas_idp_login_enhanced-nav .dropdown-menu .fa-check-circle.inactive {
+            opacity: 0;
+        }
+
+        .sas_idp_login_enhanced-nav .sas_idp_login_enhanced-lang_selector {
+            background-color: transparent;
+            color: #3b5872;
+            box-shadow: none;
+            outline: 0 !important;
+        }
+
+        .sas_idp_login_enhanced-nav .sas_idp_login_enhanced-lang_selector .fa-globe {
+            font-size: 24px;
+            padding-right: 4px;
+        }
+
+        .sas_idp_login_enhanced-company_banner {
+            line-height: 75px;
+            max-width: 85vw;
+            overflow: hidden;
+        }
+
+        .sas_idp_login_enhanced-company_banner .banner {
+            max-height: 74px;
+            margin-left: 25px;
+        }
+
+        /* LOGIN CARD */
+        .sas_idp_login_enhanced-login_card {
+            width: 360px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 8px;
+            Background-Color: #FFFFFF;
+            box-shadow: 1px 1px 3px #ececec;
+            -webkit-box-shadow: 1px 1px 3px #ececec;
+            -moz-box-shadow: 1px 1px 3px #ececec;
+        }
+
+        .sas_idp_login_enhanced-username_label {
+            font-size: 16px;
+            color: #3b5872;
+            font-weight: 600;
+        }
+
+        .sas_idp_login_enhanced-passcode_label {
+            padding-top: 15px;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #3b5872;
+        }
+
+        .sas_idp_login_enhanced-username {
+            padding-left: 30px;
+            padding-right: 30px;
+            text-align: left;
+        }
+
+        .sas_idp_login_enhanced-new_passcode {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #3b5872;
+        }
+
+        .sas_idp_login_enhanced-confirm_passcode {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #3b5872;
+            padding-bottom: 18px;
+        }
+
+        .sas_idp_login_enhanced-passcode_optinal-label {
+            margin-bottom: 0;
+        }
+
+        .sas_idp_login_enhanced-submit {
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .sas_idp_status {
+            padding-bottom: 30px;
+        }
+
+        .sas_idp_status_message {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .sas_idp_login_back_to_sp-link {
+            text-align: center;
+        }
+
+        /* SIGN IN TITLE */
+        .sas_idp_login_enhanced-title {
+            padding: 30px 30px 10px 30px;
+            word-wrap: break-word;
+            -ms-word-wrap: break-word;
+            overflow-wrap: break-word;
+            color: #3b5872;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .sas_idp_login_enhanced-title.title-center {
+            text-align: center;
+        }
+
+        .sas_idp_login_enhanced-title-app_name {
+            font-weight: bold;
+            display: block;
+            word-break: normal;
+        }
+
+        /* USER TILE */
+        .sas_idp_login_enhanced-user_tile {
+            padding: 10px 30px;
+            background: #ECECEC;
+            height: auto;
+            min-height: 60px;
+            line-height: 20px;
+            display: flex;
+        }
+
+        .sas_idp_user_info_div {
+            display: inherit;
+            color: #1A2856;
+            width: 100%;
+        }
+
+        .sas_idp_login_user_icon {
+            font-size: 38px;
+        }
+
+        .sas_idp_login_user_info {
+            font-size: 16px;
+            padding-left: 8px;
+            word-break: break-word;
+            width: 100%;
+        }
+
+        .sas_idp_login_enhanced-user_tile-user_id {
+            font-weight: bold;
+            cursor: not-allowed;
+        }
+
+        .sas_idp_login_enhanced-user_tile-full_name {
+            font-weight: 200;
+            padding-top: 4px;
+            cursor: not-allowed;
+        }
+
+        .sas_idp_switch_user_link {
+            font-size: 11px;
+        }
+
+        /* FORGET ME */
+        .sas_idp_login_enhanced-forget_me {
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 10px;
+        }
+
+        .sas_idp_login_enhanced-remember_me {
+            padding-top: 15px;
+        }
+
+        .sas_idp_login_enhanced-remember_me_text {
+            display: inline-block;
+        }
+
+        .sas_idp_login_enhanced-otp_types {
+            padding: 0 30px 0px 30px;
+        }
+
+        .resend-push-notification-label {
+            font-size: 16px;
+            font-weight: normal;
+            max-width: 200px;
+        }
+
+        .sas_idp_otp_option_buttons {
+            pointer-events: none;
+        }
+
+        .sas_idp_otp_option_buttons .sas-otp-option {
+            pointer-events: auto;
+        }
+
+        .sas_idp_login_rememberMe-otp_choice {
+            padding: 0 30px 0px 34px;
+        }
+
+        .sas_idp_login_enhanced-otp_paswword {
+            padding: 0 30px 0px 30px;
+        }
+
+        .sas_idp_login_enhanced-otp_password label {
+            font-weight: normal;
+        }
+
+        .sas_idp_login_enhanced-grid {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 206px;
+            min-width: 206px;
+            padding-bottom: 18px;
+            padding-top: 10px;
+        }
+
+        .sas_idp_login_enhanced-push_message {
+            padding: 0 30px 0 30px;
+            text-align: center;
+            font-weight: 700;
+            line-height: 18px;
+            font-size: 14px;
+            margin-bottom: 0px;
+        }
+
+        .sas_idp_login_enhanced-or_text {
+            padding: 0 30px 0 30px;
+            text-align: center;
+            font-weight: 700;
+            line-height: 18px;
+            font-size: 14px;
+        }
+
+        .text-with-line {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 30px 0;
+        }
+
+        .text-with-line::before {
+            border-top: 1.5px solid #ececec;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .text-with-line span {
+            background: #fff;
+            padding: 0 15px;
+        }
+
+        .sas_idp_login_enhanced-info {
+            padding: 0 30px 0 30px;
+        }
+
+        .sas_idp_login_enhanced-error {
+            padding: 0 30px 0 30px;
+        }
+
+        .sas_idp_login_enhanced-error_404_msg {
+            padding: 30px 30px 30px 30px;
+        }
+
+        .sas_idp_login_enhanced-error_msg {
+            padding: 30px 30px 0px 30px;
+        }
+
+        .sas_idp_login_enhanced-error_second_msg {
+            padding: 0px 30px 30px 30px;
+            min-width: 0px;
+        }
+
+        .sas_idp_login_enhanced-error_message_label {
+            width: 300px;
+            padding: 15px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            text-align: left;
+            color: #CC3333;
+            background-color: #EDB8B8;
+            border-color: #CC3333;
+            border: 1px solid;
+            border-radius: 2px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .sas_idp_login_enhanced-info_message {
+            text-align: center;
+        }
+
+        .sas_idp_login_enhanced-info_message_label {
+            text-align: left;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 23px;
+        }
+
+        .sas_idp_login_enhanced-info_message_label_password {
+            font-weight: 700;
+        }
+
+        .sas_idp_login_enhanced-info_message_label .info_message {
+            text-align: center;
+            margin-left: 100px;
+        }
+
+        .sas_idp_login_enhanced-textbox_invalid {
+            border-color: #cc3333 !important;
+        }
+
+        .sas_idp_login_enhanced-input_error_custom {
+            border-bottom-right-radius: 0 !important;
+        }
+
+        .sas_idp_login_enhanced-textbox_validation_error {
+            font-weight: 400;
+            font-size: 12px;
+            color: #e0211c;
+            border-color: #cc3333;
+            border: 1px solid transparent;
+        }
+
+        .sas_idp_login_enhanced-new_passcode_err {
+            max-width: 275px;
+            margin-left: 55px;
+        }
+
+        .sas_idp_login_enhanced-validation {
+            text-align: left;
+        }
+
+        /* THIS IS BOOTSTRAP OVERRIDE */
+        .tooltip-inner {
+            white-space: no-wrap;
+            max-width: none;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 200;
+        }
+
+        .sas_idp_login_enhanced-session_info {
+            background: linear-gradient(to bottom, transparent 10%, #bbb 100%);
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            height: 60px;
+            width: 100%;
+        }
+
+        .fa-info-circle {
+            font-size: 13px;
+            color: #9b9a9b;
+            vertical-align: super;
+        }
+
+        #divRememberMe .fa.fa-info-circle {
+            vertical-align: baseline;
+        }
+
+        [aria-label][role="tooltip"] {
+            --microtip-font-size: 13px;
+        }
+
+        [aria-label][role="tooltip"]::after {
+            background-color: #1A2834;
+            text-align: left;
+            white-space: pre-wrap;
+            border-radius: 0;
+            width: 300px;
+        }
+
+        .otptooltip-disabled [aria-label][role="tooltip"]::after {
+            padding: 12px;
+            width: 276px;
+        }
+
+        .sas-otp-option-info-icon-tooltip[aria-label][role="tooltip"]::after {
+            padding: 12px;
+            width: 276px;
+        }
+
+        #divRememberMe [aria-label][role="tooltip"][data-microtip-position="right"]::before {
+            top: 1rem;
+        }
+
+        #divRememberMe [aria-label][role="tooltip"][data-microtip-position="right"]::after {
+            top: 1rem;
+        }
+
+        .otptooltip-disabled [aria-label][role="tooltip"][data-microtip-position="right"]::before {
+            top: 50%;
+        }
+
+        .otptooltip-disabled [aria-label][role="tooltip"][data-microtip-position="right"]::after {
+            top: 50%;
+        }
+
+        [aria-label][role="tooltip"][data-microtip-position="right"]::after {
+            top: 0.5rem;
+        }
+
+        [aria-label][role="tooltip"][data-microtip-position="right"]::before {
+            top: 0.5rem;
+        }
+
+        .sas_idp_login_enhanced-session_info {
+            background: linear-gradient(to bottom, transparent 10%, #bbb 100%);
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            height: 60px;
+            width: 100%;
+        }
+
+        .sas_idp_login_enhanced-copyright {
+            padding: 20px 20px;
+            height: 20px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            text-align: right;
+        }
+
+        .sas_idp_login_enhanced-banner {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .sas_idp_login_enhanced-info_box {
+            padding: 24px 30px;
+            box-shadow: inset 0px 0px 100vw 100vw rgba(255, 255, 255, 0.9);
+            background-color: #1A2856;
+        }
+
+        .sas_idp_login_enhanced-info_box:empty {
+            display: none;
+        }
+
+        .sas_idp_login_enhanced-banner .logo {
+            max-width: 300px;
+            max-height: 600px;
+        }
+
+        .sas_idp_login_enhanced-footer {
+            padding-right: 10px;
+            font-size: 9px;
+            font-weight: 600;
+            color: #3b5872;
+        }
+
+        .sas_idp_login_enhanced-password {
+            margin-bottom: 0;
+            font-size: 16px;
+            color: #3b5872;
+            padding-bottom: 18px;
+        }
+
+        .idFirstTable {
+            display: table;
+        }
+
+        .idFirstTableRow {
+            display: table-row;
+        }
+
+        .idFirstTableCell {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        .sas_idp_login_enhanced-close_browser {
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 18px;
+            display: table-cell;
+            vertical-align: top;
+            padding-left: 10px;
+        }
+
+        .sas_idp_login_enhanced-sign_off_msg {
+            padding: 30px 30px 100px 30px;
+        }
+
+        .sas_idp_login_enhanced-title span {
+            display: inline;
+            word-wrap: break-word;
+
+        }
+
+        .protect-section {
+            text-align: center;
+        }
+
+        .protect-section .protect-img {
+            width: 162px;
+            padding: 5px 0;
+        }
+
+        .protect-section .activate-img {
+            width: 94px;
+            padding: 5px 0;
+        }
+
+        .protect-section .protect-title {
+            font-size: 18px;
+            padding-top: 15px;
+            display: block;
+        }
+
+        .protect-section .protect-text {
+            text-align: left;
+            padding: 10px 0 23px 0;
+            font-size: 16px;
+        }
+
+        .protect-section .login-button {
+            padding-bottom: 15px;
+        }
+
+        .protect-section .login-button .btn {
+            font-size: 14px;
+            text-transform: unset;
+        }
+
+        .protect-section .login-button .btn.btn-cancel {
+            width: 49%;
+            color: #1A2856;
+            background-color: #fff;
+        }
+
+        .protect-section .login-button .btn.btn-enroll {
+            width: 100%;
+            border-radius: 3px;
+        }
+
+        .protect-section .enroll-footer {
+            padding-bottom: 15px;
+        }
+
+        .protect-section .enroll-footer a {
+            font-size: 13px;
+        }
+
+        .push-container {
+            padding: 15px 30px;
+        }
+
+        .push-section {
+            display: inline-flex;
+        }
+
+        .push-section .push-img img {
+            width: 50px;
+        }
+
+        .push-section .push-msg {
+            font-size: 16px;
+            margin-left: 40px;
+        }
+
+        .push-section .push-msg .loading-section {
+            padding-top: 20px;
+        }
+
+        .push-section .push-msg .loading-bar {
+            width: 100%;
+        }
+
+        .push-numerical-challenge-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .push-numerical-challenge-section .loading-section{
+            padding-top: 25px !important;
+        }
+
+        .push-numerical-challenge-section .push-msg {
+            font-size: 16px;
+        }
+
+        .push-numerical-challenge-section .push-numerical-challenge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding-top: 35px;
+        }
+
+        .push-numerical-challenge-section .push-numerical-challenge .push-numeric-challenge {
+            font-size: 48px;
+            width: 55px;
+            height: 65px;
+            margin-bottom: 0px;
+        }
+
+        .push-numerical-challenge-section .push-numerical-challenge-outdated-app-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding-top: 25px;
+        }
+
+        .push-numerical-challenge-section .push-numerical-challenge-outdated-app-section .push-numerical-challenge-tooltip::after {
+            width: 220px;
+        }
+
+        .passcode-section-numerical-challenge {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+         .passcode-section-numerical-challenge .passcode-msg-numerical-challenge {
+            margin-left: 0px !important;
+        }
+
+        .passcode-section {
+            display: inline-flex;
+        }
+
+        .passcode-section .passcode-img img {
+            width: 68px;
+        }
+
+        .passcode-section .passcode-msg {
+            font-size: 16px;
+            margin-left: 22px;
+        }
+
+        .passcode-section .passcode-msg label {
+            font-weight: normal;
+        }
+
+        .passcode-section .passcode-msg input {
+            width: 150px;
+        }
+
+        .passcode-section .passcode-msg.full-width input {
+            width: 100%;
+        }
+
+        /* CSS styles for image and text in SMS page */
+
+        .passcode-section .passcode-img.sms-text img {
+            width: 41px;
+        }
+
+        .passcode-section .passcode-img.sms-email img {
+            width: 60px;
+        }
+
+        .passcode-section .passcode-img.sms-text-email img {
+            width: 56px;
+        }
+
+        .passcode-section .passcode-msg.sms-text {
+            margin-left: 48px;
+        }
+
+        .passcode-section .passcode-msg.sms-email {
+            margin-left: 30px;
+        }
+
+        .passcode-section .passcode-msg.sms-text-email {
+            margin-left: 29px;
+        }
+
+        .sas_idp_password-expired {
+            border-color: #dc3545;
+            display: block;
+            margin-top: .5rem;
+            text-align: left;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #3b5872;
+            padding: 0 30px 0px 30px;
+        }
+
+        .password-expired-warning-img {
+            text-align: center;
+            margin: 22px 0 27px;
+        }
+
+        .password-expired-warning-msg {
+            margin-bottom: 16px;
+            font-size: 16px;
+            line-height: 23px;
+        }
+
+        .sas_idp_password-expired-label {
+            font-weight: normal;
+        }
+
+        /* FIDO Animation Guide */
+        .fido-guide {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 50;
+            background-color: #fff;
+        }
+
+        .fido-guide .fido-guide-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 0;
+        }
+
+        .fido-guide .fido-guide-container .fido-guide-images {
+            min-width: 600px;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 26px;
+        }
+
+        .fido-guide .fido-guide-container .fido-guide-images.image-title {
+            padding: 15px 4px;
+        }
+
+        .fido-guide .fido-guide-container .fido-guide-images .image-text {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .fido-guide .fido-guide-container .fido-guide-images .image-text.separator {
+            width: 10%;
+        }
+
+        .fido-guide .fido-guide-container .fido-guide-images .securitykey-img {
+            width: 262px;
+        }
+
+        @media screen and (max-width: 580px), screen and (max-height: 699px) {
+            .fido-guide {
+                display: none;
+            }
+
+            [aria-label][role="tooltip"]::after {
+                width: 175px;
+            }
+        }
+
+        @media screen and (min-height: 700px) and (max-height: 799px) {
+            .fido-guide .fido-guide-container {
+                padding: 15px 0;
+            }
+
+            .fido-guide .fido-guide-container .fido-guide-images .securitykey-img,
+            .fido-guide .fido-guide-container .fido-guide-images .windowshello-img {
+                height: 78px;
+                width: auto;
+            }
+
+            .fido-guide .fido-guide-container .fido-guide-images.image-title {
+                padding: 8px 14px;
+            }
+        }
+
+        /* New laoding animation - https://codepen.io/brunjo/pen/XJmbNz */
+        .loading-section {
+            padding-top: 35px;
+        }
+
+        .loading-section .loading-bar {
+            height: 4px;
+            width: 300px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ddd;
+            margin: 0 auto;
+        }
+
+        .loading-section .loading-bar-numerical-challenge {
+            height: 4px;
+            width: 120px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ddd;
+            margin: 0 auto;
+        }
+
+        .loading-section .loader {
+            display: block;
+            position: absolute;
+            content: "";
+            left: -200px;
+            width: 200px;
+            height: 4px;
+            background-color: #1A2856;
+            animation: loading 2s linear infinite;
+        }
+
+        label.fido-label {
+            font-weight: 600;
+        }
+
+        .loading-section.fido {
+            margin-bottom: 30px;
+        }
+
+        .loading-section.login-table {
+            margin-bottom: 15px;
+        }
+
+        .sas_idp_notification {
+            position: absolute;
+            font-size: 14px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            background: #e8f5e8;
+            width: fit-content;
+            min-width: 300px;
+            min-height: 50px;
+            margin-top: -65px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            border-radius: 3px;
+            color: #323c3c;
+            border: solid 1px #64b75e;
+            padding: 10px 35px 10px 75px;
+        }
+
+        /* background for the icon */
+        .sas_idp_notification::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 52px;
+            background-color: #64b75e;
+        }
+
+        /* css arrow */
+        .sas_idp_notification::after {
+            content: '';
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid;
+            position: absolute;
+            left: 52px;
+            top: calc(50% - 8px);
+            color: #64b75e;
+        }
+
+        #notifyType:before {
+            display: block;
+            margin-top: 15px;
+        }
+
+        .sas_idp_notification .fa {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            left: 20px;
+            top: calc(50% - 11px);
+        }
+
+        .sas_idp_notification .close {
+            position: absolute;
+            top: calc(50% - 10.5px);
+            right: 8px;
+            opacity: 1;
+            text-shadow: initial;
+            color: inherit;
+        }
+
+        /* OTP option */
+        .sas-otp-option {
+            border: 1px solid #BDC3C7;
+            border-radius: 8px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background-color: transparent;
+            align-items: center;
+            display: flex;
+            cursor: pointer;
+            padding: 16px 17px 17px 14px;
+        }
+
+        .sas-otp-option-disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        @keyframes loading {
+            from {
+                left: -200px;
+                width: 30%;
+            }
+            50% {
+                width: 30%;
+            }
+            70% {
+                width: 70%;
+            }
+            80% {
+                left: 50%;
+            }
+            95% {
+                left: 120%;
+            }
+            to {
+                left: 100%;
+            }
+        }
+
+        .sas-otp-option-info-icon-tooltip {
+            top: 0.5rem;
+        }
+
+        .sas-otp-option-info-icon {
+            margin-left: 8px;
+            color: #9B9A9B;
+        }
+
+        /* custom css for add-authenticator fa icon */
+        .icon-fa {
+            margin-right: 17px;
+            font-size: 20px;
+            /* Better Font Rendering =========== */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* used for "OR" element in the OTP Token Choice page */
+        .or-component-span-class {
+            display: flex;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .or-component-span-class:before {
+            content: "";
+            flex: 1 1;
+            border: 1px solid #ECECEC;
+            margin: auto;
+            margin-right: 31px;
+        }
+
+        .or-component-span-class:after {
+            content: "";
+            flex: 1 1;
+            border: 1px solid #ECECEC;
+            margin: auto;
+            margin-left: 31px;
+        }
+
+        .or-component-div-class {
+            padding: 0 30px 0 30px;
+            margin: 23px 0 23px 0;
+        }
+
+        .sas-line-other-options {
+            border-top: 1px solid #ececec;
+            margin: 17px 0 24px 0;
+        }
+
+        .icon-gto-custom {
+            margin-right: 13px;
+            font-size: 24px;
+        }
+
+        /* used for user education text in the single otp page */
+        .education {
+            border-color: transparent;
+            font-size: 16px;
+            font-weight: 400;
+            font-style: normal;
+            line-height: 22px;
+            margin-bottom: 20px;
+        }
+
+        .otp-choice-go-back {
+            margin-top: 24px;
+            height: 31px;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* styles for smaller screen size */
+        @media screen and (max-width: 370px) {
+            .sas_idp_login_enhanced-login_card {
+                width: 300px;
+            }
+
+            .sas-textbox {
+                width: 240px;
+            }
+
+            .sas-button {
+                width: 240px;
+                height: 38px;
+            }
+
+            .sas_idp_login_enhanced-error_message_label {
+                width: 240px;
+                font-size: 10px;
+                font-weight: 400;
+            }
+
+            .loading-section .loading-bar {
+                width: 240px;
+            }
+
+            [aria-label][role="tooltip"]::after {
+                width: 100px;
+            }
+        }
+
+        /* Mobile view styles */
+        @media screen and (max-width: 580px) {
+          .sas-button {
+            height: 38px;
+          }
+
+            .sas_idp_login_enhanced-company_banner {
+                line-height: 60px;
+            }
+
+            .sas_idp_login_enhanced-company_banner .banner {
+                max-height: 59px;
+                max-width: 74vw;
+            }
+
+            .sas_idp_login_enhanced-login_card .confirm-identity-btn .sas-button {
+                width: calc(50% - 8px);
+            }
+
+            .sas_idp_login_enhanced-copyright {
+                text-align: center;
+                font-size: 0.8em;
+            }
+
+            .sas_idp_notification {
+                width: 90%;
+            }
+        }
+
+        /* Modern authentication styles */
+        @media screen and (max-width: 652px) and (max-height: 605px) {
+            .sas_idp_login_enhanced-login_card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100vh;
+                margin-top: 0;
+            }
+
+            .sas_idp_login_enhanced-user_tile_container {
+                width: 100%;
+            }
+
+            [aria-label][role="tooltip"]::after {
+                width: 250px;
+            }
+
+            .sas-template-background {
+                background: white !important;
+            }
+
+            .sas_idp_login_enhanced-banner_wrapper {
+                display: none;
+            }
+
+            .sas_idp_login_enhanced-banner {
+                display: none;
+            }
+
+            .sas_idp_login_enhanced-login_card {
+                box-shadow: none;
+            }
+
+            .sas_idp_login_enhanced-session_info {
+                display: none;
+            }
+
+            .sas_idp_login_enhanced-content {
+                vertical-align: top;
+                padding: 0;
+            }
+
+            .sas_idp_login_enhanced-body {
+                /* these are IE11 fix for flex-box */
+                flex: 1 0 auto;
+                max-width: 100%;
+            }
+
+            .sas_idp_login_enhanced-title,
+            .sas_idp_login_enhanced-info,
+            .sas_idp_login_enhanced-error {
+                /* these are IE11 fix for flex-box */
+                max-width: 100%;
+                flex-shrink: 0;
+            }
+
+            .sas_idp_login_enhanced-title {
+                padding: 0px 30px;
+                margin: 0px 0px 12px;
+            }
+
+            .sas_idp_login_enhanced-password {
+                padding: 0;
+            }
+
+            .sas-textbox {
+                padding: 0px 12px;
+                margin: 4px 0px 8px;
+            }
+
+            .sas_idp_login_enhanced-user_tile {
+                padding: 5px 30px;
+            }
+
+            .sas_idp_login_enhanced-grid {
+                padding: 0;
+            }
+
+            .sas_idp_login_enhanced-info_box {
+                padding: 24px 30px 28px 30px;
+                width: 100vw;
+                flex-shrink: 0;
+            }
+
+            .push-container {
+                padding: 0px 30px;
+            }
+
+            .text-with-line {
+                margin: 15px 0px;
+            }
+
+            .protect-section .protect-title {
+                padding-top: 10px;
+            }
+
+            .protect-section .login-button {
+                padding-bottom: 10px;
+            }
+
+            .sas_idp_login_enhanced-content_wrapper {
+                position: relative;
+            }
+
+            html,
+            body {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                min-height: 100%;
+                overflow-x: hidden;
+            }
+
+            /* Scrollbar styles */
+            ::-webkit-scrollbar {
+                width: 7px;
+                height: 7px;
+            }
+
+            ::-webkit-scrollbar-track {
+                -webkit-border-radius: 0;
+                border-radius: 0;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                -webkit-border-radius: 0;
+                border-radius: 0;
+                background: #6f8194;
+            }
+
+            ::-webkit-scrollbar-thumb:window-inactive {
+                background: #7e8e9f;
+            }
+        }
+
+            .form_whole {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: row;
+            }
+
+            .frame {
+              width: 180px;
+              height: 180px;
+              border: 2px solid #ffffff;
+              overflow: auto;
+              display: flex;
+              justify-content: center;
+              padding: 0;
+              margin: 0;
+            }
+
+            .grid-container {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              grid-template-rows: repeat(4, 1fr);
+              grid-gap: 5px;
+              width: 80px;
+              height: 30px;
+            }
+
+            .grid-item {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: #ffffff;
+              cursor: move;
+              position: relative;
+              border: 4px solid #f2f2f2;
+            }
+
+            .grid-item img {
+              max-width: 100%;
+              max-height: 100%;
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+
+            .number-grid {
+              display: grid;
+              /* grid-template-rows: repeat(3,1fr); */
+              grid-template-columns: repeat(3,1fr);
+              grid-gap: 2px;
+              width: 100px;
+              margin-top: 5px;
+              margin-bottom: 5px;
+              align-self: center;
+            }
+
+            .number-grid span {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: #f2f2f2;
+              padding: 5px;
+            }
+
+            .number-grid span img {
+              max-width: 100%;
+              max-height: 100%;
+              width: auto;
+              height: auto;
+              object-fit: contain;
+              max-width: 100%;
+              max-height: 100%;
+              width: 100%;
+              height: auto;
+            }
+    </style>
+<body class="idFirstBody sas-template-background" style="background-image: url(&quot;https://spedemo-scs.stademo.com/content/0Q16GSBQ4A-STA/6c3347f1fd57d1b0e2119f691b7b3036.jpg&quot;);">
+<!-- <input type="hidden" name="isOperatorAuth" id="isOperatorAuth" value="true">
+<input type="hidden" id="debugMode" value="false">
+<input type="hidden" id="version" value="SPEDEMO2023July-207291">
+
+<input type="hidden" id="localizationStoreUrl" value="https://storage.googleapis.com/cpl-sta-l-app-spedemo-01-us-languages-bucket-01/">
+<input type="hidden" id="localizationListingUrl" value="https://storage.googleapis.com/cpl-sta-l-app-spedemo-01-us-languages-bucket-01">
+<input type="hidden" id="localizationFallbackListingUrl" value="/auth/resources/j9rlq/login/sas-login-ui/langs/lang-list.xml?v=SPEDEMO2023July-207291">
+<input type="hidden" id="localizationFallbackBucketUrl" value="/auth/resources/j9rlq/login/sas-login-ui/langs/">
+<input type="hidden" id="loginPageTimeout" value="15">
+<input type="hidden" id="notificationTimeout" value="10">
+<input type="hidden" id="signalCollectionTimeout" value="30">
+<input type="hidden" id="customLanguageBaseUrl" value="https://spedemo-scs.stademo.com">
+<input type="hidden" id="customLanguageListUrl" value="https://spedemo-scs.stademo.com/organization/operator/languages">  <input type="hidden" id="referer" value="https://spedemo-sasidp.stademo.com/auth/realms/operator/protocol/openid-connect/auth?client_id=uigateway&amp;state=a142a1f5-66d2-4a05-b9b1-4c7d6bf3eae5&amp;redirect_uri=https%3A%2F%2Fspedemo-sta.stademo.com%2Fhome%2Fdashboard%2F%3Fauth_callback%3D1&amp;scope=openid&amp;response_type=code">
+
+<input type="hidden" id="backgroundImageUrl" value="https://spedemo-scs.stademo.com/content/0Q16GSBQ4A-STA/6c3347f1fd57d1b0e2119f691b7b3036.jpg">
+<input id="resourcePath" type="hidden" value="/auth/resources/j9rlq/login/sas-login-ui">
+<input id="restartSessionUrl" type="hidden" value="/auth/realms/operator/login-actions/restart?client_id=uigateway&amp;tab_id=A5xJaalau2M">
+-->
+<!--  -->
+<!-- <form id="reset-form" name="reset-form" action="https://spedemo-sasidp.stademo.com/auth/realms/operator/login-actions/authenticate?session_code=7tof4HknjQ3qJ14aOG2DuIn22iwju3OmVvYQAT3T5SI&amp;execution=7e67f6f2-0e40-45a0-be01-5e5b1e109dc1&amp;client_id=uigateway&amp;tab_id=A5xJaalau2M" method="post">
+  <input type="hidden" name="reset" value="reset">
+</form> -->
+
+<!-- <form id="switch-user-form" name="switch-user-form" action="https://spedemo-sasidp.stademo.com/auth/realms/operator/login-actions/authenticate?session_code=7tof4HknjQ3qJ14aOG2DuIn22iwju3OmVvYQAT3T5SI&amp;execution=7e67f6f2-0e40-45a0-be01-5e5b1e109dc1&amp;client_id=uigateway&amp;tab_id=A5xJaalau2M" method="post">
+ <input type="hidden" name="switch_user" value="switch_user">
+</form> -->
+
+
+<form id="sas-login-form" name="form" action="/store_key_position" method="post">
+    <!-- flag to indicate a form submit -->
+    <input type="hidden" name="submitted" value="submitted">
+
+
+    <div id="formContainerIdfirst" class="sas_idp_login_enhanced-content_wrapper">
+
+        <div class="sas_idp_login_enhanced-content">
+            <div class="sas_idp_login_enhanced-banner_wrapper staCustom-topBannerBgColor">
+
+
+            </div>
+            <div id="divMain" class="sas_idp_login_enhanced-login_card" role="main">
+                <div id="trSignIn" class="sas_idp_login_enhanced-title title-center form-group" role="heading" aria-level="1">
+                    <span id="tdSignIn" class="sas_idp_login_enhanced-title-text" data-i18n="signin">Enroll to access the</span>
+                    <span id="tdResource" class="sas_idp_login_enhanced-title-app_name">Authentication Console</span>
+                </div>
+
+                <div id="divUserInputDisplay" class="form-group sas_idp_login_enhanced-user_tile_container">
+                    <div id="divUserTile" class="sas_idp_login_enhanced-user_tile">
+                        <div class="sas_idp_user_info_div">
+                            <div class="sas_idp_login_user_icon"><i class="fa fa-user"></i></div>
+                            <div class="sas_idp_login_user_info">
+                                <div id="userIdDisplay" class="sas_idp_login_enhanced-user_tile-user_id">User: {{session.username}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!--Error message div-->
+                <!--Info message div-->
+
+                <div id="divIdFirstInfo" class="sas_idp_login_enhanced-info">
+                    <div id="infoMsgLbl" class="idFirstTableCell">
+                        <label id="challenge-data" class="sas_idp_login_enhanced-info_message_label " data-i18n="idfirstoff-pattern">Drag and drop the pairs to continue with the enrollment.</label>
+                    </div>
+                </div>
+
+                <div id="divLoginTbl" class="sas_idp_login_enhanced-body">
+
+                    <div class = form_whole>
+                        <div class="frame">
+                            <div class="grid-container">
+                                <div class="grid-item draggable" draggable="true">
+                                    <img src="{{ url_for('static', filename='Apple.jpg') }}" alt="Image 1">
+                                    <input type="hidden" name="gridItem" value="..\static\Apple.jpg">
+                                </div>
+                                <div class="grid-item draggable" draggable="true">
+                                    <img src="{{ url_for('static', filename='Bulb.jpg') }}" alt="Image 2">
+                                    <input type="hidden" name="gridItem" value="..\static\Bulb.jpg">
+                                </div>
+                                <div class="grid-item draggable" draggable="true">
+                                    <img src="{{ url_for('static', filename='Cactus.png') }}" alt="Image 3">
+                                    <input type="hidden" name="gridItem" value="..\static\Cactus.png">
+                                </div>
+                                <div class="grid-item draggable" draggable="true">
+                                    <img src="{{ url_for('static', filename='Camera.jpg') }}" alt="Image 4">
+                                    <input type="hidden" name="gridItem" value="..\static\Camera.jpg">
+                                </div>
+                                <div class="grid-item draggable" draggable="true">
+                                    <img src="{{ url_for('static', filename='Candle.png') }}" alt="Image 5">
+                                    <input type="hidden" name="gridItem" value="..\static\Candle.png">
+                                </div>
+                                <div class="grid-item draggable" draggable="true">
+                                    <img src="{{ url_for('static', filename='Hat.jpg') }}" alt="Image 6">
+                                    <input type="hidden" name="gridItem" value="..\static\Hat.jpg">
+                                </div>
+                                <div class="grid-item draggable" draggable="true">
+                                    <img src="{{ url_for('static', filename='Star.png') }}" alt="Image 7">
+                                    <input type="hidden" name="gridItem" value="..\static\Star.png">
+                                </div>
+                                <div class="grid-item draggable" draggable="true">
+                                    <img src="{{ url_for('static', filename='Tree.jpg') }}" alt="Image 8">
+                                    <input type="hidden" name="gridItem" value="..\static\Tree.jpg">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-container">
+                            <div class="number-grid">
+                                <span>1</span>
+                                <span>2</span>
+                                <span>3</span>
+                                <span>4</span>
+                                <span><img src="{{ url_for('static', filename='Logo.png') }}" alt="Image Logo"></span>
+                                <span>5</span>
+                                <span>6</span>
+                                <span>7</span>
+                                <span>8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sas_idp_login_enhanced-otp_paswword">
+                        <div id="tdPassword" class="sas_idp_login_enhanced-password">
+                            <label id="optionalPasswordLbl" class="sas_idp_login_enhanced-passcode_optinal-label" data-i18n="passcode">Choose three keypoints from the above number grid:</label>
+                            <input class="form-control sas-textbox" name="keyPoint" type="password" id="keyPoint" tabindex="0" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div id="divSubmit">
+                        <div id="tdSubmit" class="sas_idp_login_enhanced-submit">
+                            <input type="submit" id="loginbutton" class="btn btn-lg btn-primary sas-button" data-i18n="button-login" data-i18n-attribute="value" tabindex="0" value="Submit">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="idFirstTdBanner" class="sas_idp_login_enhanced-banner">
+                    <img id="companyLogo" class="logo" src="https://spedemo-scs.stademo.com/content/0Q16GSBQ4A-STA/9ac552b81c5caad5f4f89db089c4e0c7.png" data-i18n="alt-logo" data-i18n-attribute="alt" alt="Logo">
+                </div>
+
+            </div>
+            <footer>
+                <div id="divSessionInfo" class="sas_idp_login_enhanced-session_info">
+                    <div>
+                        <div class="sas_idp_login_enhanced-copyright" data-i18n="copyRight" data-i18n-arg="2023">Copyright © 2017 - 2023 Thales Group. All Rights Reserved.</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</form>
+<script>
+    const draggables = document.querySelectorAll('.draggable');
+    let dragItem = null;
+    let dropIndex = null;
+
+    draggables.forEach(item => {
+      item.addEventListener('dragstart', handleDragStart);
+      item.addEventListener('dragenter', handleDragEnter);
+      item.addEventListener('dragover', handleDragOver);
+      item.addEventListener('dragleave', handleDragLeave);
+      item.addEventListener('drop', handleDrop);
+      item.addEventListener('dragend', handleDragEnd);
+    });
+
+    function handleDragStart(e) {
+      dragItem = this;
+      this.classList.add('dragging');
+    }
+
+    function handleDragEnter(e) {
+      e.preventDefault();
+      this.classList.add('hovered');
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      const grid = document.querySelector('.grid-container');
+      const items = Array.from(grid.querySelectorAll('.grid-item'));
+      dropIndex = items.indexOf(this);
+      const dragIndex = items.indexOf(dragItem);
+
+      if (dropIndex > dragIndex && !this.classList.contains('dragging-over')) {
+        this.classList.add('dragging-over');
+      } else if (dropIndex < dragIndex && this.classList.contains('dragging-over')) {
+        this.classList.remove('dragging-over');
+      }
+    }
+
+    function handleDragLeave() {
+      this.classList.remove('hovered');
+      this.classList.remove('dragging-over');
+    }
+
+    function handleDrop() {
+      const grid = document.querySelector('.grid-container');
+      const items = Array.from(grid.querySelectorAll('.grid-item'));
+      const dragIndex = items.indexOf(dragItem);
+
+      if (dropIndex !== null && dragIndex !== dropIndex) {
+        if (dragIndex < dropIndex) {
+          grid.insertBefore(dragItem, this.nextSibling);
+        } else {
+          grid.insertBefore(dragItem, this);
+        }
+      }
+
+      this.classList.remove('hovered');
+      this.classList.remove('dragging-over');
+    }
+
+    function handleDragEnd() {
+      this.classList.remove('dragging');
+      dragItem = null;
+      dropIndex = null;
+    }
+
+      function submitData() {
+        const password = document.querySelector('input[type="password"]').value;
+
+        // store_key_position(password)
+        console.log(password)
+
+      //   // Send the password data to the server for storage
+      //   // You can use AJAX or fetch to send the data to the server
+
+      //   // Example using fetch
+        fetch('/store_key_position', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ password: password })
+
+
+        })
+          .then(response => {
+            if (response.ok) {
+              // Data successfully stored in the database
+              console.log('Password stored successfully');
+            } else {
+              // Error occurred while storing the password
+              console.error('Error storing password');
+            }
+          })
+          .catch(error => {
+            console.error('Error storing password:', error);
+          });
+      }
+</script>
+
+
+
+
+</body></html>

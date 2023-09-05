@@ -1,14 +1,16 @@
+import logging
+
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from Tables.TableImagePair import getimagePair, insertTableImagePairs
 from Tables.TableImages import getImageidFromTableImages
-from Tables.TableUserKeyPoints import getDataFromTableUserKeyPoints, getDataFromTableUsers, getKeyPointsFromTableUserKeyPoints, insertTableUserKeyPoints
+from Tables.TableUserKeyPoints import getDataFromTableUserKeyPoints, getDataFromTableUsers, getKeyPointsFromTableUserKeyPoints, insertTableUserKeyPoints, insertTableUser
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 @app.route('/')
 def home():
-    return render_template('signup.html')
+    return render_template('new_signup.html')
 
 @app.route('/login_token', methods=['POST', 'GET'])
 def login():
@@ -21,7 +23,7 @@ def login():
         compare_images = []
         for i in range(len(selected_imagesfromhtml)-1, -1,-1):
             j = selected_imagesfromhtml[i].strip("http://127.0.0.1:5000/")
-            j = j.replace("static/", "static\\")
+            j = j.replace("static/", "..\static\\")
             id = getImageidFromTableImages(j)
             selected_images.append(id)
             
@@ -41,7 +43,7 @@ def login():
                     
         for i in old_images:
             j = i.strip("http://127.0.0.1:5000/")
-            j = j.replace("static/", "static\\")
+            j = j.replace("static/", "..\static\\")
             id = getImageidFromTableImages(j)
             keypoint_images.append(id)
 
@@ -49,11 +51,14 @@ def login():
             compare_images.append(getimagePair(username, i))
 
         if selected_images == compare_images:
-            return redirect(url_for('home'))
+            try:
+                return redirect(url_for('home'))
+            except Exception as e:
+                logging.error('Error at %s', 'division', exc_info=e)
         else:
-            return 'Log is not successfull'
+            return jsonify({'error': 'Log is not successfull'})
         
-    #   select imageid2 from ImagePairs where username='myuser1' and imageid1=4 UNION select imageid1 from ImagePairs where username='myuser1' and imageid2=4      
+    #   select imageid2 from ImagePairs where username='myuser1' and imageid1=4 UNION select imageid1 from ImagePairs where username='myuser1' and imageid2=4
     return jsonify({'error': 'User not found'})
 
 @app.route('/signup', methods=['POST'])
@@ -61,14 +66,15 @@ def signup():
     username = request.form['username']
     result = getDataFromTableUsers(username)
     if result == '1':
-        session['username'] = username  # Store username in session
-        return redirect(url_for('enrollment'))
+        getDataFromTableUsers(username)
     else:
-        return "User not found!!"
+        insertTableUser(username)
+    session['username'] = username  # Store username in session
+    return redirect(url_for('enrollment'))
 
 @app.route('/enrollment')
 def enrollment():
-    return render_template('enrollment.html')
+    return render_template('new_enrollment.html')
 
 @app.route('/home', methods=['GET', 'POST'])
 def home_page():

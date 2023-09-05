@@ -29,6 +29,10 @@ def getimagePair(Username, gridpoint):
     db_conn = psycopg2.connect("dbname=test_db user=postgres password=Password1!")
     cursor_object = db_conn.cursor()
     cursor_object.execute(f"select imageid2 from ImagePairs where username='{Username}' and imageid1= '{gridpoint}' UNION select imageid1 from ImagePairs where username='{Username}' and imageid2= '{gridpoint}'")
+    data = cursor_object.fetchall()
+    response = data[0][0]
+    cursor_object.close()
     db_conn.commit()
+    return str(response)
 
 # createTableImagePairs()
