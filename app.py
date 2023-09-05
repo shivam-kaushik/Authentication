@@ -51,12 +51,9 @@ def login():
             compare_images.append(getimagePair(username, i))
 
         if selected_images == compare_images:
-            try:
-                return redirect(url_for('home'))
-            except Exception as e:
-                logging.error('Error at %s', 'division', exc_info=e)
+            jsonify({'success': 'Login is successful!'})
         else:
-            return jsonify({'error': 'Log is not successfull'})
+            return jsonify({'error': 'Login is not successful!'})
         
     #   select imageid2 from ImagePairs where username='myuser1' and imageid1=4 UNION select imageid1 from ImagePairs where username='myuser1' and imageid2=4
     return jsonify({'error': 'User not found'})

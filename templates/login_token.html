@@ -58,7 +58,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 5px;
-      width: 90px;
+      width: 250px;
       margin-top: 5px;
       margin-bottom: 5px;
     }
@@ -87,7 +87,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
-      margin: 20px;
+      margin: 40px;
       padding: 20px;
       flex-direction: row;
       gap: 10px;
@@ -95,15 +95,21 @@
 
     }
 
+    #label_heading{
+      font-size: 30px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
     #submit {
-      padding: 5px ;
+      padding: 8px ;
       width: 100px;
       align-self: center;
       background-color: #3d3bb7;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 14px;
       cursor: pointer;
+      font-size: 20px;
     }
 
     .form-container button {
@@ -113,7 +119,7 @@
 </head>
 <body>
 <div class="container">
-  <div id="label_heading">Hi User, Please select your image:</div>
+  <div id="label_heading">Hi {{session.username}}, Please select your image:</div>
 <div class="form-container">
   <div class="number-grid">
     <div class="grid-item" onclick="selectImage(1)">
